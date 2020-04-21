@@ -1,8 +1,11 @@
-% example for multi point eqalisation routine
+% Example for multi-point equalization routine
+%
+% Sebastian J. Schlecht, Tuesday, 21. April 2020
+
 clear; clc; close all;
 rng(1);
 
-%% create some impulse responses from all pole models
+%% Create some impulse responses from all pole models
 n = 2^13;
 numPoles = 50;
 numOfIR = 10;
@@ -26,11 +29,11 @@ for it = 1:numOfIR
     IR = [IR, h];
 end
 
-%% MULTI POINT EQUALISATION
+%% Multi-point Equalization
 [num, den] = MultiPointEQ(IR,numPoles * 2);
 
 
-%% plot results
+%% Plot results
 figure(1); hold on; grid on;
 
 % approximation frequency response

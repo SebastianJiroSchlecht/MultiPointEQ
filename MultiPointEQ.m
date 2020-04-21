@@ -18,8 +18,11 @@ function [num, den] = MultiPointEQ(IR,varargin)
 %   
 %
 %
-%   Sebastian Schlecht (schlecsn), 2013
-%   Audiolabs Erlangen-N?rnberg
+% Author: Dr.-Ing. Sebastian Jiro Schlecht, 
+% Aalto University, Finland
+% email address: sebastian.schlecht@aalto.fi
+% Website: sebastianjiroschlecht.com
+% 21. April 2020; Last revision: 21. April 2020
 
 
 %% input parser
@@ -38,7 +41,6 @@ P = p.Results.numPoles;
 if m > n % rotate IR if not correct
     error('Impulse Responses have to be column vectors')
 end
-
 
 
 
