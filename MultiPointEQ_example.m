@@ -1,4 +1,6 @@
 % example for multi point eqalisation routine
+clear; clc; close all;
+rng(1);
 
 %% create some impulse responses from all pole models
 n = 2^13;
@@ -29,7 +31,17 @@ end
 
 
 %% plot results
-figure(1); 
+figure(1); hold on; grid on;
+
+% approximation frequency response
+[h,w]  = freqz(num, den);
+h = mag2db(abs(h));
+plot(w, h, 'r','LineWidth',2);
+
+% inverse frequency response
+[h,w]  = freqz(den, 1);
+h = mag2db(abs(h));
+plot(w, h, 'g')
 
 % last IR frequency response
 for it = 1:numOfIR
@@ -37,23 +49,11 @@ for it = 1:numOfIR
     h = mag2db(abs(h));
     plot(w, h)
 end
-hold on;
-
-% approximation frequency response
-[h,w]  = freqz(num, den);
-h = mag2db(abs(h));
-plot(w, h, 'r')
-
-% inverse frequency response
-[h,w]  = freqz(den, 1);
-h = mag2db(abs(h));
-plot(w, h, 'g')
-
 
 % labels
 axis tight
 xlabel('Frequency [rad]')
 ylabel('Magnitude [dB]')
 title('Magnitude Response of Multi-Point Equalisation')
-legend('Simulated IRs', 'Multi-point Approximation', 'Multi-point Inverse')
+legend('Multi-point Approximation', 'Multi-point Inverse','Simulated IRs')
 hold off;
