@@ -39,24 +39,25 @@ figure(1); hold on; grid on;
 % approximation frequency response
 [h,w]  = freqz(num, den);
 h = mag2db(abs(h));
-plot(w, h, 'r','LineWidth',2);
+p1 = plot(w, h, 'r','LineWidth',2);
 
 % inverse frequency response
 [h,w]  = freqz(den, 1);
 h = mag2db(abs(h));
-plot(w, h, 'g')
+p2 = plot(w, h, 'g');
 
 % last IR frequency response
 for it = 1:numOfIR
     [h,w]  = freqz(IR(:,it), 1);
     h = mag2db(abs(h));
-    plot(w, h)
+    p3 = plot(w, h);
 end
+uistack(p1,'top');
 
 % labels
 axis tight
 xlabel('Frequency [rad]')
 ylabel('Magnitude [dB]')
 title('Magnitude Response of Multi-Point Equalisation')
-legend('Multi-point Approximation', 'Multi-point Inverse','Simulated IRs')
+legend([p1,p2,p3(1)],'Multi-point Approximation', 'Multi-point Inverse','Simulated IRs')
 hold off;
